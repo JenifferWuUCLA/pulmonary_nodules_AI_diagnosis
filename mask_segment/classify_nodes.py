@@ -4,6 +4,7 @@ import numpy as np
 import pickle
 
 from skimage import measure
+from glob import glob
 
 from sklearn import cross_validation
 from sklearn.cross_validation import StratifiedKFold as KFold
@@ -23,10 +24,10 @@ def getRegionFromMap(slice_npy):
 
 def getRegionMetricRow(fname="nodules.npy"):
     # fname, numpy array of dimension [#slices, 1, 512, 512] containing the images
-    print("fname: %s" % (str(fname[0])))
+    # print("fname: %s" % (str(fname[0])))
     seg = np.load(fname[0])
     nslices = seg.shape[0]
-    print("nslices: %s" % (str(nslices)))
+    # print("nslices: %s" % (str(nslices)))
 
     # metrics
     totalArea = 0.
@@ -46,8 +47,8 @@ def getRegionMetricRow(fname="nodules.npy"):
     areas = []
     eqDiameters = []
     for slicen in range(nslices):
-        print("slicen: %s" % (str(slicen)))
-        print("seg[slicen, 0, :, :]: %s" % (str(seg[slicen, 0, :, :])))
+        # print("slicen: %s" % (str(slicen)))
+        # print("seg[slicen, 0, :, :]: %s" % (str(seg[0, 0, :, :])))
         regions = getRegionFromMap(seg[slicen, 0, :, :])
         # print("regions: %s" % (str(regions)))
         for region in regions:
@@ -58,7 +59,7 @@ def getRegionMetricRow(fname="nodules.npy"):
                 print("region.area > maxAllowedArea: %s" % (str(region.area > maxAllowedArea)))
                 continue
             totalArea += region.area
-            print("totalArea: %s" % (str(totalArea)))
+            # print("totalArea: %s" % (str(totalArea)))
             areas.append(region.area)
             avgEcc += region.eccentricity
             avgEquivlentDiameter += region.equivalent_diameter
@@ -86,7 +87,7 @@ def createFeatureDataset(nodfiles=None):
     if nodfiles == None:
         # directory of numpy arrays containing masks for nodules
         # found via unet segmentation
-        noddir = "/training_set/"
+        noddir = "training_set/"
         nodfiles = glob(noddir + "*npy")
     # dict with mapping between training examples and true labels
     # the training set is the output masks from the unet segmentation
@@ -127,19 +128,19 @@ def classifyData():
         clf = RF(n_estimators=100, n_jobs=3)
         clf.fit(X_train, y_train)
         y_pred[test] = clf.predict(X_test)
-    print classification_report(Y, y_pred, target_names=["No Cancer", "Cancer"])
+    print(classification_report(Y, y_pred, target_names=["No Cancer", "Cancer"]))
     print("logloss", logloss(Y, y_pred))
 
     # All Cancer
-    print "Predicting all positive"
+    print("Predicting all positive")
     y_pred = np.ones(Y.shape)
-    print classification_report(Y, y_pred, target_names=["No Cancer", "Cancer"])
+    print(classification_report(Y, y_pred, target_names=["No Cancer", "Cancer"]))
     print("logloss", logloss(Y, y_pred))
 
     # No Cancer
-    print "Predicting all negative"
+    print("Predicting all negative")
     y_pred = Y * 0
-    print classification_report(Y, y_pred, target_names=["No Cancer", "Cancer"])
+    print(classification_report(Y, y_pred, target_names=["No Cancer", "Cancer"]))
     print("logloss", logloss(Y, y_pred))
 
     # try XGBoost
@@ -151,12 +152,13 @@ def classifyData():
         clf = xgb.XGBClassifier(objective="binary:logistic")
         clf.fit(X_train, y_train)
         y_pred[test] = clf.predict(X_test)
-    print classification_report(Y, y_pred, target_names=["No Cancer", "Cancer"])
+    print(classification_report(Y, y_pred, target_names=["No Cancer", "Cancer"]))
     print("logloss", logloss(Y, y_pred))
 
 
 if __name__ == "__main__":
     from sys import argv
 
+    # createFeatureDataset();
     getRegionMetricRow(argv[1:])
     classifyData()
