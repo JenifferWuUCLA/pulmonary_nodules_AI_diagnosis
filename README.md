@@ -19,6 +19,17 @@ is, of course, the point of the competition.
 
 Thanks for participating and helping to advance cancer diagnosis!
 
+### evaluation script 
+> ### evaluationScript folder
+
+Additional data
+
+Optional data could be downloaded from the following links.
+
+> ##### evaluation script: the LUNA16 evaluation script can be found here. The script could be used to locally evaluate the system for development purposes. More info is available here. [updated: 17th June 2016]
+> ##### lung segmentation: a drive folder containing the lung segmentation can be found here. [updated: 28th April 2016]
+> ##### additional_annotations.csv: the file will be available soon.
+
 ### TianChiMedical_AI 天池医疗AI挑战赛 
 > ### preprocessing folder
   
