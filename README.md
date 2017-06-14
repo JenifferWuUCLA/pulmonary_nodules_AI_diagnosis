@@ -20,9 +20,9 @@ is, of course, the point of the competition.
 Thanks for participating and helping to advance cancer diagnosis!
 
 ### evaluation script 
-> ### evaluationScript folder
+> ### mask_segment/evaluationScript folder
 
-Additional data
+### Additional data
 
 Optional data could be downloaded from the following links.
 
