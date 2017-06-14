@@ -44,3 +44,16 @@ Optional data could be downloaded from the following links.
 
 ##### slices_masks
 > 存放的是根据annotations.csv文件生成的slices和对应的GroundTruth，可用于训练2D-Unet
+
+生成图片来观察分割是否有问题:
+![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/preprocessing/slices_masks_1/jpg/0004_0908_0380_1.3.6.1.4.1.14519.5.2.1.6279.6001.325164338773720548739146851679.jpg)
+(1.a) 0004_0908_0380_1.3.6.1.4.1.14519.5.2.1.6279.6001.325164338773720548739146851679.mhd的肺部区域图像
+
+![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/preprocessing/slices_masks_1/jpg/0004_0908_0380_1.3.6.1.4.1.14519.5.2.1.6279.6001.325164338773720548739146851679_o.jpg)
+(1.b) 0004_0908_0380_1.3.6.1.4.1.14519.5.2.1.6279.6001.325164338773720548739146851679.mhd的肺部结节区域图像
+
+![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/preprocessing/slices_masks_1/jpg/0004_0909_0305_1.3.6.1.4.1.14519.5.2.1.6279.6001.325164338773720548739146851679.jpg)
+(2.a) 0004_0909_0305_1.3.6.1.4.1.14519.5.2.1.6279.6001.325164338773720548739146851679.mhd的肺部区域图像
+
+![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/preprocessing/slices_masks_1/jpg/0004_0909_0305_1.3.6.1.4.1.14519.5.2.1.6279.6001.325164338773720548739146851679_o.jpg)
+(2.b) 0004_0909_0305_1.3.6.1.4.1.14519.5.2.1.6279.6001.325164338773720548739146851679.mhd的肺部结节区域图像
