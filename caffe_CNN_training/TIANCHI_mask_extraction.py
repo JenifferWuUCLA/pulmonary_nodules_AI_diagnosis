@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# TIANCHI_mask_extraction.py - just keep 3 slices
+
 from __future__ import print_function, division
 import os
 import SimpleITK as sitk
@@ -67,8 +70,9 @@ Returns uint16 version
 #
 # Getting list of image files
 tianchi_path = "/home/jenifferwu/TIANCHI/"
-tianchi_subset_path = tianchi_path + "train_subset00/"
-output_path = "/home/jenifferwu/Caffe_CNN_Data/IMAGE_MASKS_DATA/"
+subset = "train_subset00/"
+tianchi_subset_path = tianchi_path + subset
+output_path = "/home/jenifferwu/Caffe_CNN_Data/IMAGE_MASKS_DATA/" + subset
 file_list = glob(tianchi_subset_path + "*.mhd")
 
 

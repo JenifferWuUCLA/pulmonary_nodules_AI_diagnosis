@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# generate_caffe_train_file.py - Removes the header from annotations.csv file in the train directory
+# TIANCHI_segment_lung_ROI.py - Pre-processed Images with region of interest in lung
 
 import numpy as np
 from skimage import morphology
@@ -13,7 +13,8 @@ import os
 import matplotlib.pyplot as plt
 
 
-working_path = "/home/jenifferwu/Caffe_CNN_Data/IMAGE_MASKS_DATA/"
+subset = "train_subset00/"
+working_path = "/home/jenifferwu/Caffe_CNN_Data/IMAGE_MASKS_DATA/" + subset
 file_list=glob(working_path+"images_*.npy")
 
 for img_file in file_list:
