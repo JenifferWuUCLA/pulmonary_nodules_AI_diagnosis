@@ -33,6 +33,6 @@ csvFileObj.close()
 csvFileObj = open(os.path.join(output_path, train_file), 'w')
 csvWriter = csv.writer(csvFileObj)
 for row in csvRows:
-    print row
+    # print row
     csvWriter.writerow(row)
 csvFileObj.close()
