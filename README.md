@@ -19,12 +19,12 @@ is, of course, the point of the competition.
 
 Thanks for participating and helping to advance cancer diagnosis!
 
-### 下面3 slices图像将进一步的放入深度学习模型,进行肺部结节的进一步检测 (Pre-processed Images with region of interest in lung)。
-##### ![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/mask_segment/JPEG/images_0004_0023_0.jpg)
+#### 下面3 slices图像将进一步的放入深度学习模型,进行肺部结节的进一步检测 (Pre-processed Images with region of interest in lung)。
+>##### ![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/mask_segment/JPEG/images_0004_0023_0.jpg)
 
-##### ![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/mask_segment/JPEG/images_0004_0023_1.jpg)
+>##### ![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/mask_segment/JPEG/images_0004_0023_1.jpg)
 
-##### ![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/mask_segment/JPEG/images_0004_0023_2.jpg)
+>##### ![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/mask_segment/JPEG/images_0004_0023_2.jpg)
 
 ### evaluation script 
 > ### mask_segment/evaluationScript folder
