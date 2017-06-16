@@ -1,0 +1,10 @@
+#! /bin/sh
+
+
+mkdir Dev
+
+cp images_*_*_0.jpg Dev/
+
+cd Dev/
+
+rename 's/\_0.jpg/\.jpg/' *
