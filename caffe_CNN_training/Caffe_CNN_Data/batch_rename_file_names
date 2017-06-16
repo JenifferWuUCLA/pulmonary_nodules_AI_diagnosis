@@ -8,3 +8,22 @@ cp images_*_*_0.jpg Dev/
 cd Dev/
 
 rename 's/\_0.jpg/\.jpg/' *
+
+
+
+cd /media/ucla/32CC72BACC727845/tianchi
+
+
+rename 's/train_/my_train_/' *
+
+mv my_train_subset00/train_subset00/ .
+
+
+rename 's/val_/my_val_/' *
+
+mv my_val_subset00/val_subset00/ .
+
+
+rename 's/test_/my_test_/' *
+
+mv my_test_subset00/test_subset00/ .

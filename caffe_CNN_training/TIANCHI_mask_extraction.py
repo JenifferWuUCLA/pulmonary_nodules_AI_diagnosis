@@ -71,8 +71,12 @@ Returns uint16 version
 # Getting list of image files
 subset = "train_subset00/"
 tianchi_path = "/media/ucla/32CC72BACC727845/tianchi/"
+tianchi_csv_path = tianchi_path + "csv/train/"
 tianchi_subset_path = tianchi_path + subset
 output_path = "/home/ucla/Downloads/tianchi/" + subset
+# print(tianchi_subset_path)
+# print(output_path)
+
 file_list = glob(tianchi_subset_path + "*.mhd")
 
 
@@ -88,7 +92,8 @@ def get_filename(file_list, case):
 
 #
 # The locations of the nodes
-df_node = pd.read_csv(tianchi_path + "annotations.csv")
+# print(tianchi_csv_path)
+df_node = pd.read_csv(tianchi_csv_path + "annotations.csv")
 df_node["file"] = df_node["seriesuid"].map(lambda file_name: get_filename(file_list, file_name))
 df_node = df_node.dropna()
 
@@ -123,5 +128,7 @@ for fcount, img_file in enumerate(tqdm(file_list)):
                                  width, height, spacing, origin)
                 masks[i] = mask
                 imgs[i] = img_array[i_z]
+            # print output_path + "images_%04d_%04d.npy" % (fcount, node_idx)
+            # print output_path + "masks_%04d_%04d.npy" % (fcount, node_idx)
             np.save(os.path.join(output_path, "images_%04d_%04d.npy" % (fcount, node_idx)), imgs)
             np.save(os.path.join(output_path, "masks_%04d_%04d.npy" % (fcount, node_idx)), masks)
