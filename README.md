@@ -2,6 +2,10 @@
 ## Pulmonary Nodules AI Diagnosis
 > ##### @author Jeniffer Wu
 
+### Caffe训练基于卷积神经网络的肺结节分割器
+> ### caffe_CNN_training folder
+This code is to deal with Tianchi Dataset, and train lung nodule segmentation device based on convolutional neural network using Caffe deep learning framework.
+
 ### DSB3Tutorial 
 > ### mask_segment folder
 
