@@ -23,7 +23,7 @@ Thanks for participating and helping to advance cancer diagnosis!
 #### slices图像将进一步的放入深度学习模型,进行肺部结节的进一步检测 (Pre-processed Images with region of interest in lung)。
 >##### ![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/mask_segment/JPEG/Step1-5.png)
 
->##### ![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/mask_segment/JPEG/images_0004_0023_0.jpg)
+>##### ![Index Page](https://github.com/JenifferWuUCLA/pulmonary_nodules_AI_diagnosis/blob/master/mask_segment/JPEG/Pre-processed%20Images%20with%20region%20of%20interest%20in%20lung.png)
 
 ### evaluation script 
 > ### mask_segment/evaluationScript folder
