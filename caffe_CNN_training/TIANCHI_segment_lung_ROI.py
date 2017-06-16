@@ -14,7 +14,7 @@ import os
 
 
 subset = "train_subset00/"
-working_path = "/home/jenifferwu/Caffe_CNN_Data/IMAGE_MASKS_DATA/" + subset
+working_path = "/home/ucla/Downloads/tianchi/" + subset
 file_list=glob(working_path+"images_*.npy")
 
 for img_file in file_list:

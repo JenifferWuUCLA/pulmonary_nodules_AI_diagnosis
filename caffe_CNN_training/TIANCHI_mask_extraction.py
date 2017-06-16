@@ -69,10 +69,10 @@ Returns uint16 version
 ############
 #
 # Getting list of image files
-tianchi_path = "/home/jenifferwu/TIANCHI/"
 subset = "train_subset00/"
+tianchi_path = "/media/ucla/32CC72BACC727845/tianchi/"
 tianchi_subset_path = tianchi_path + subset
-output_path = "/home/jenifferwu/Caffe_CNN_Data/IMAGE_MASKS_DATA/" + subset
+output_path = "/home/ucla/Downloads/tianchi/" + subset
 file_list = glob(tianchi_subset_path + "*.mhd")
 
 
