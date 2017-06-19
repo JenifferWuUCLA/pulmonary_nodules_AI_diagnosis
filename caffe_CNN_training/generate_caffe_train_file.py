@@ -7,11 +7,11 @@ import os
 ############
 #
 # TIANCHI CSV
-TIANCHI_train_path = "/home/jenifferwu/TIANCHI/csv/train/"
+TIANCHI_train_path = "/media/ucla/32CC72BACC727845/tianchi/csv/train/"
 TIANCHI_train_annotations = TIANCHI_train_path + "annotations.csv"
 TIANCHI_train_seriesuids = TIANCHI_train_path + "seriesuids.csv"
 
-output_path = "/home/jenifferwu/Caffe_CNN_Data/"
+output_path = "/home/ucla/Downloads/Caffe_CNN_Data/"
 train_file = "train.txt"
 
 csvRows = []

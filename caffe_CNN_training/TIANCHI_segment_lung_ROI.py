@@ -19,7 +19,7 @@ file_list=glob(working_path+"images_*.npy")
 
 for img_file in file_list:
     imgs_to_process = np.load(img_file).astype(np.float64)
-    fig = plt.figure(figsize=(12,4))
+    # fig = plt.figure(figsize=(12,4))
     '''
     for i in range(3):
         ax = fig.add_subplot(1,3,i+1)
