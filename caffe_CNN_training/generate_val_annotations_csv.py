@@ -52,7 +52,7 @@ def csv_row(seriesuid, coordX, coordY, coordZ, diameter_mm):
 #
 # The locations of the nodes
 # print(tianchi_csv_path)
-df_node = pd.read_csv(tianchi_path + "annotations.csv")
+df_node = pd.read_csv(tianchi_path + "csv/val/annotations.csv")
 df_node["file"] = df_node["seriesuid"].map(lambda file_name: get_filename(file_list, file_name))
 # print(df_node["file"])
 df_node = df_node.dropna()
