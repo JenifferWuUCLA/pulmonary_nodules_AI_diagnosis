@@ -3,6 +3,7 @@
 
 import csv
 import os
+import shutil
 
 ############
 #
@@ -16,14 +17,38 @@ train_file = "train.txt"
 
 csvRows = []
 
+original_data_path = "/root/code/Data／"
+# original_data_path = "/home/jenifferwu/IMAGE_MASKS_DATA/JPEG/Dev/"
+train_data_path = "/root/code/Pulmonary_nodules_data/train/"
+# train_data_path = "/home/jenifferwu/IMAGE_MASKS_DATA/JPEG/Pulmonary_nodules_data/train/"
+
 
 #####################
 def csv_row(seriesuid, diameter_mm, nodule_class):
     new_row = []
-    new_row.append(seriesuid)
-    new_row.append(diameter_mm)
+    seriesuid_list = seriesuid.split('/')
+    subset, series_uid = seriesuid_list[0], seriesuid_list[1]
+    train_dir, image_file, image_path = "", "", ""
+    if nodule_class == 0:
+        train_dir = "n01440010/"
+        image_file = "n01440010_" + series_uid + ".jpg"
+        image_path = train_dir + image_file
+    elif nodule_class == 1:
+        train_dir = "n01440011/"
+        image_file = "n01440011_" + series_uid + ".jpg"
+        image_path = train_dir + image_file
+    new_row.append(image_path)
+    # new_row.append(diameter_mm)
     new_row.append(nodule_class)
     csvRows.append(new_row)
+
+    original_image = original_data_path + subset + "/" + series_uid + ".jpg"
+    # print("original_image: %s" % str(original_image))
+    tmp_image = train_data_path + train_dir + series_uid + ".jpg"
+    train_image = train_data_path + train_dir + image_file
+
+    shutil.copy(original_image, train_data_path + train_dir)
+    shutil.move(tmp_image, train_image)
 
 
 def is_nodule(diameter_mm):
@@ -43,7 +68,7 @@ def is_nodule(diameter_mm):
 csvFileObj = open(TIANCHI_train_annotations)
 readerObj = csv.DictReader(csvFileObj)
 
-csv_row('seriesuid', 'diameter_mm', 'nodule_class')
+# csv_row('seriesuid', 'diameter_mm', 'nodule_class')
 for row in readerObj:
     if readerObj.line_num == 1:
         continue  # skip first row
