@@ -9,10 +9,12 @@ import shutil
 #
 # TIANCHI CSV
 TIANCHI_train_path = "/home/ucla/Downloads/Caffe_CNN_Data/csv/train/"
+# TIANCHI_train_path = "/home/jenifferwu/IMAGE_MASKS_DATA/csv/"
 TIANCHI_train_annotations = TIANCHI_train_path + "annotations.csv"
 TIANCHI_train_seriesuids = TIANCHI_train_path + "seriesuids.csv"
 
 output_path = "/home/ucla/Downloads/Caffe_CNN_Data/"
+# output_path = "/home/jenifferwu/Caffe_CNN_Data"
 train_file = "train.txt"
 
 csvRows = []
@@ -28,14 +30,15 @@ def csv_row(seriesuid, diameter_mm, nodule_class):
     new_row = []
     seriesuid_list = seriesuid.split('/')
     subset, series_uid = seriesuid_list[0], seriesuid_list[1]
+    re_series_uid = series_uid.replace("images", "")
     train_dir, image_file, image_path = "", "", ""
     if nodule_class == 0:
         train_dir = "n01440010/"
-        image_file = "n01440010_" + series_uid + ".jpg"
+        image_file = "n01440010" + re_series_uid + ".jpg"
         image_path = train_dir + image_file
     elif nodule_class == 1:
         train_dir = "n01440011/"
-        image_file = "n01440011_" + series_uid + ".jpg"
+        image_file = "n01440011" + re_series_uid + ".jpg"
         image_path = train_dir + image_file
     new_row.append(image_path)
     # new_row.append(diameter_mm)

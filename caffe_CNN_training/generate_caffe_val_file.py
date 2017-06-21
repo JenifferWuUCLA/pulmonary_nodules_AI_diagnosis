@@ -8,21 +8,21 @@ import shutil
 ############
 #
 # TIANCHI CSV
-TIANCHI_train_path = "/home/ucla/Downloads/Caffe_CNN_Data/csv/val/"
-# TIANCHI_train_path = "/home/jenifferwu/IMAGE_MASKS_DATA/csv/"
-TIANCHI_train_annotations = TIANCHI_train_path + "annotations.csv"
-TIANCHI_train_seriesuids = TIANCHI_train_path + "seriesuids.csv"
+TIANCHI_val_path = "/home/ucla/Downloads/Caffe_CNN_Data/csv/val/"
+# TIANCHI_val_path = "/home/jenifferwu/IMAGE_MASKS_DATA/csv/"
+TIANCHI_val_annotations = TIANCHI_val_path + "annotations.csv"
+TIANCHI_val_seriesuids = TIANCHI_val_path + "seriesuids.csv"
 
 output_path = "/home/ucla/Downloads/Caffe_CNN_Data/"
 # output_path = "/home/jenifferwu/Caffe_CNN_Data"
-train_file = "val.txt"
+val_file = "val.txt"
 
 csvRows = []
 
 original_data_path = "/root/code/Data/"
 # original_data_path = "/home/jenifferwu/IMAGE_MASKS_DATA/JPEG/Dev/"
-train_data_path = "/root/code/Pulmonary_nodules_data/val/"
-# train_data_path = "/home/jenifferwu/IMAGE_MASKS_DATA/JPEG/Pulmonary_nodules_data/val/"
+val_data_path = "/root/code/Pulmonary_nodules_data/val/"
+# val_data_path = "/home/jenifferwu/IMAGE_MASKS_DATA/JPEG/Pulmonary_nodules_data/val/"
 
 
 #####################
@@ -30,15 +30,16 @@ def csv_row(seriesuid, diameter_mm, nodule_class):
     new_row = []
     seriesuid_list = seriesuid.split('/')
     subset, series_uid = seriesuid_list[0], seriesuid_list[1]
-    train_dir, image_file, image_path = "", "", ""
+    re_series_uid = series_uid.replace("images", "")
+    val_dir, image_file, image_path = "", "", ""
     if nodule_class == 0:
-        train_dir = "n01440010/"
-        image_file = "n01440010_" + series_uid + ".jpg"
-        image_path = train_dir + image_file
+        # val_dir = "n01440010/"
+        image_file = "PULMONARY_NODULES_val" + re_series_uid + ".jpg"
+        image_path = val_dir + image_file
     elif nodule_class == 1:
-        train_dir = "n01440011/"
-        image_file = "n01440011_" + series_uid + ".jpg"
-        image_path = train_dir + image_file
+        # val_dir = "n01440011/"
+        image_file = "PULMONARY_NODULES_val" + re_series_uid + ".jpg"
+        image_path = val_dir + image_file
     new_row.append(image_path)
     # new_row.append(diameter_mm)
     new_row.append(nodule_class)
@@ -46,11 +47,11 @@ def csv_row(seriesuid, diameter_mm, nodule_class):
 
     original_image = original_data_path + subset + "/" + series_uid + ".jpg"
     # print("original_image: %s" % str(original_image))
-    tmp_image = train_data_path + train_dir + series_uid + ".jpg"
-    train_image = train_data_path + train_dir + image_file
+    tmp_image = val_data_path + val_dir + series_uid + ".jpg"
+    val_image = val_data_path + val_dir + image_file
 
-    shutil.copy(original_image, train_data_path + train_dir)
-    shutil.move(tmp_image, train_image)
+    shutil.copy(original_image, val_data_path + val_dir)
+    shutil.move(tmp_image, val_image)
 
 
 def is_nodule(diameter_mm):
@@ -67,7 +68,7 @@ def is_nodule(diameter_mm):
 
 # Read the annotations CSV file in (skipping first row).
 
-csvFileObj = open(TIANCHI_train_annotations)
+csvFileObj = open(TIANCHI_val_annotations)
 readerObj = csv.DictReader(csvFileObj)
 
 # csv_row('seriesuid', 'diameter_mm', 'nodule_class')
@@ -81,7 +82,7 @@ csvFileObj.close()
 
 
 # Write out the val.txt CSV file.
-csvFileObj = open(os.path.join(output_path, train_file), 'w')
+csvFileObj = open(os.path.join(output_path, val_file), 'w')
 csvWriter = csv.writer(csvFileObj)
 for row in csvRows:
     # print row
