@@ -17,7 +17,7 @@ train_file = "train.txt"
 
 csvRows = []
 
-original_data_path = "/root/code/Data／"
+original_data_path = "/root/code/Data/"
 # original_data_path = "/home/jenifferwu/IMAGE_MASKS_DATA/JPEG/Dev/"
 train_data_path = "/root/code/Pulmonary_nodules_data/train/"
 # train_data_path = "/home/jenifferwu/IMAGE_MASKS_DATA/JPEG/Pulmonary_nodules_data/train/"
