@@ -9,7 +9,7 @@ import shutil
 #
 # TIANCHI CSV
 TIANCHI_val_path = "/home/ucla/Downloads/Caffe_CNN_Data/csv/val/"
-# TIANCHI_val_path = "/home/jenifferwu/IMAGE_MASKS_DATA/csv/"
+# TIANCHI_val_path = "/home/jenifferwu/IMAGE_MASKS_DATA/csv/val/"
 TIANCHI_val_annotations = TIANCHI_val_path + "annotations.csv"
 TIANCHI_val_seriesuids = TIANCHI_val_path + "seriesuids.csv"
 

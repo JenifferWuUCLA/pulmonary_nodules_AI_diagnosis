@@ -19,10 +19,13 @@ except:
 #
 # Getting list of image files
 subset = "train_subset00/"
+# subset = "subset0/"
 tianchi_path = "/media/ucla/32CC72BACC727845/tianchi/"
+# tianchi_path = "/home/jenifferwu/LUNA2016/"
 tianchi_subset_path = tianchi_path + subset
 
 output_path = "/home/ucla/Downloads/Caffe_CNN_Data/csv/train/"
+# output_path = "/home/jenifferwu/IMAGE_MASKS_DATA/csv/train/"
 
 file_list = glob(tianchi_subset_path + "*.mhd")
 
@@ -53,6 +56,7 @@ def csv_row(seriesuid, coordX, coordY, coordZ, diameter_mm):
 # The locations of the nodes
 # print(tianchi_csv_path)
 df_node = pd.read_csv(tianchi_path + "csv/train/annotations.csv")
+# df_node = pd.read_csv(tianchi_path + "annotations.csv")
 df_node["file"] = df_node["seriesuid"].map(lambda file_name: get_filename(file_list, file_name))
 # print(df_node["file"])
 df_node = df_node.dropna()
@@ -88,7 +92,8 @@ for fcount, img_file in enumerate(tqdm(file_list)):
             # print("images_%04d_%04d.npy" % (fcount, node_idx))
             # print("masks_%04d_%04d.npy" % (fcount, node_idx))
             images_name = "images_%04d_%04d.npy" % (fcount, node_idx)
-            csv_row(subset + images_name.replace(".npy", ""), node_x, node_y, node_z, diam)
+            for i in range(3):
+                csv_row(subset + images_name.replace(".npy", "") + "_" + str(i), node_x, node_y, node_z, diam)
 
 # Re-Write out the annotations.txt CSV file.
 csvFileObj = open(os.path.join(output_path, "annotations.csv"), 'w')
