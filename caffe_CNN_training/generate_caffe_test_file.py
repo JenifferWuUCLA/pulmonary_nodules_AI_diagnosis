@@ -8,21 +8,21 @@ import shutil
 ############
 #
 # TIANCHI CSV
-# TIANCHI_test_path = "/home/ucla/Downloads/Caffe_CNN_Data/csv/test/"
-TIANCHI_test_path = "/home/jenifferwu/IMAGE_MASKS_DATA/csv/test/"
+TIANCHI_test_path = "/home/ucla/Downloads/Caffe_CNN_Data/csv/test/"
+# TIANCHI_test_path = "/home/jenifferwu/IMAGE_MASKS_DATA/csv/test/"
 TIANCHI_test_annotations = TIANCHI_test_path + "annotations.csv"
 TIANCHI_test_seriesuids = TIANCHI_test_path + "seriesuids.csv"
 
-# output_path = "/home/ucla/Downloads/Caffe_CNN_Data/"
-output_path = "/home/jenifferwu/Caffe_CNN_Data"
+output_path = "/home/ucla/Downloads/Caffe_CNN_Data/"
+# output_path = "/home/jenifferwu/Caffe_CNN_Data"
 val_file = "test.txt"
 
 csvRows = []
 
-# original_data_path = "/root/code/Data/"
-original_data_path = "/home/jenifferwu/IMAGE_MASKS_DATA/JPEG/Dev/"
-# val_data_path = "/root/code/Pulmonary_nodules_data/test/"
-val_data_path = "/home/jenifferwu/IMAGE_MASKS_DATA/JPEG/Pulmonary_nodules_data/test/"
+original_data_path = "/root/code/Data/"
+# original_data_path = "/home/jenifferwu/IMAGE_MASKS_DATA/JPEG/Dev/"
+val_data_path = "/root/code/Pulmonary_nodules_data/test/"
+# val_data_path = "/home/jenifferwu/IMAGE_MASKS_DATA/JPEG/Pulmonary_nodules_data/test/"
 
 
 #####################
