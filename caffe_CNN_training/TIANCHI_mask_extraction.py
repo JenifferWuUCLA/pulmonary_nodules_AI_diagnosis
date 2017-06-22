@@ -5,7 +5,6 @@ from __future__ import print_function, division
 import os
 import SimpleITK as sitk
 import numpy as np
-import csv
 from glob import glob
 import pandas as pd
 
