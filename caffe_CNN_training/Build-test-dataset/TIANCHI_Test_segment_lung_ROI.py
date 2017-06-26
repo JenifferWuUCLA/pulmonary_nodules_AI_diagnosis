@@ -17,7 +17,7 @@ import os
 subset = "data_set/"
 # working_path = "/home/ucla/Downloads/tianchi/" + subset
 working_path = "/home/jenifferwu/IMAGE_MASKS_DATA/" + subset
-file_list = glob(working_path + "masksTestPredicted*.npy")
+file_list = glob(working_path + "masksTestPredicted_*.npy")
 
 for img_file in file_list:
     imgs_to_process = np.load(img_file).astype(np.float64)
