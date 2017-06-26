@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# TIANCHI_Test_mask_extraction.py - just keep 3 slices
+# TIANCHI_mask_extraction.py - just keep 3 slices
 
 from __future__ import print_function, division
 import os
@@ -68,16 +68,11 @@ Returns uint16 version
 ############
 #
 # Getting list of image files
-subset = "test_subset00/"
-# subset = "subset3/"
+subset = "train_subset00/"
 tianchi_path = "/media/ucla/32CC72BACC727845/tianchi/"
-# tianchi_path = "/home/jenifferwu/LUNA2016/"
-tianchi_csv_path = tianchi_path + "csv/test/"
-# tianchi_csv_path = tianchi_path + "test/"
+tianchi_csv_path = tianchi_path + "csv/train/"
 tianchi_subset_path = tianchi_path + subset
 output_path = "/home/ucla/Downloads/tianchi/" + subset
-# output_path = "/home/jenifferwu/IMAGE_MASKS_DATA/" + subset
-
 file_list = glob(tianchi_subset_path + "*.mhd")
 
 
