@@ -65,8 +65,8 @@ Returns uint16 version
 ############
 #
 # Getting list of image files
-# subset = "train_subset00/"
-subset = "train_subset0/"
+# subset = "train_dataset/"
+subset = "data_set/"
 # tianchi_path = "/media/ucla/32CC72BACC727845/tianchi/"
 tianchi_path = "/home/jenifferwu/LUNA2016/"
 tianchi_subset_path = tianchi_path + subset

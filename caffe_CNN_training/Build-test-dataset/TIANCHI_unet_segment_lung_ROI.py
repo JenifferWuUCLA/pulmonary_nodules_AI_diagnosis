@@ -6,12 +6,12 @@ from skimage.transform import resize
 from glob import glob
 
 
-# subset = "test_subset00/"
-subset = "test_subset3/"
+# subset = "train_dataset/"
+subset = "data_set/"
 # working_path = "/home/ucla/Downloads/tianchi/" + subset
 working_path = "/home/jenifferwu/IMAGE_MASKS_DATA/" + subset
-file_list=glob(working_path+"images_*.npy")
 
+file_list=glob(working_path+"images_*.npy")
 for img_file in file_list:
     # I ran into an error when using Kmean on np.float16, so I'm using np.float64 here
     imgs_to_process = np.load(img_file).astype(np.float64) 
