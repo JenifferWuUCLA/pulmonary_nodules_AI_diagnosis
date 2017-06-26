@@ -3,7 +3,7 @@
 > ##### @author Jeniffer Wu
 
 ### U-Net训练基于卷积神经网络的肺结节分割器
-> ### caffe_CNN_training/Build-test-dataset folder
+> ### Build-test-dataset folder
 This code is to deal with Tianchi Dataset, and train lung nodule segmentation based on convolutional neural network using U-Net deep learning framework.
 
 ### Caffe训练基于卷积神经网络的的图像分类算法(如 CNN 等)对疑似结节进行分类,得出疑似肺结节是否为真正肺结节的概率
