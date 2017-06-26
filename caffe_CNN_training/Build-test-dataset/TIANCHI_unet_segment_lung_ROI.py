@@ -5,7 +5,11 @@ from sklearn.cluster import KMeans
 from skimage.transform import resize
 from glob import glob
 
-working_path = "/home/jenifferwu/IMAGE_MASKS_DATA/"
+
+# subset = "test_subset00/"
+subset = "test_subset3/"
+# working_path = "/home/ucla/Downloads/tianchi/" + subset
+working_path = "/home/jenifferwu/IMAGE_MASKS_DATA/" + subset
 file_list=glob(working_path+"images_*.npy")
 
 for img_file in file_list:
