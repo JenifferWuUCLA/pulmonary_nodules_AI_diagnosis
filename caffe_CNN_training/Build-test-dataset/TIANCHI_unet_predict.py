@@ -21,6 +21,8 @@ img_cols = 512
 
 smooth = 1.
 
+CUBE_SIZE = 32
+
 
 def dice_coef(y_true, y_pred):
     y_true_f = K.flatten(y_true)
@@ -40,7 +42,7 @@ def dice_coef_loss(y_true, y_pred):
     return -dice_coef(y_true, y_pred)
 
 
-def get_unet():
+def get_net(input_shape=(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE, 1), load_weight_path=None, features=False, mal=False):
     inputs = Input((1, img_rows, img_cols))
     conv1 = Convolution2D(32, 3, 3, activation='relu', border_mode='same')(inputs)
     conv1 = Convolution2D(32, 3, 3, activation='relu', border_mode='same')(conv1)
@@ -81,58 +83,27 @@ def get_unet():
 
     model = Model(input=inputs, output=conv10)
 
+    if load_weight_path is not None:
+        model.load_weights(load_weight_path, by_name=False)
+
     model.compile(optimizer=Adam(lr=1.0e-5), loss=dice_coef_loss, metrics=[dice_coef])
 
     return model
 
 
-def train_and_predict(use_existing):
+def predict():
     print('-' * 30)
-    print('Loading and preprocessing train data...')
+    print('Loading and preprocessing test data...')
     print('-' * 30)
-    imgs_train = np.load(working_path + "trainImages.npy").astype(np.float32)
-    imgs_mask_train = np.load(working_path + "trainMasks.npy").astype(np.float32)
-
-    imgs_test = np.load(working_path + "testImages.npy").astype(np.float32)
+    imgs_test = np.load(working_path + "test/testImages.npy").astype(np.float32)
     imgs_mask_test_true = np.load(working_path + "testMasks.npy").astype(np.float32)
-
-    mean = np.mean(imgs_train)  # mean for data centering
-    std = np.std(imgs_train)  # std for data normalization
-
-    imgs_train -= mean  # images should already be standardized, but just in case
-    imgs_train /= std
-
-    print('-' * 30)
-    print('Creating and compiling model...')
-    print('-' * 30)
-    model = get_unet()
-    # Saving weights to unet.hdf5 at checkpoints
-    model_checkpoint = ModelCheckpoint(working_path + 'unet.hdf5', monitor='loss', save_best_only=True)
-    #
-    # Should we load existing weights? 
-    # Set argument for call to train_and_predict to true at end of script
-    if use_existing:
-        model.load_weights(working_path + 'unet.hdf5')
-
-    # 
-    # The final results for this tutorial were produced using a multi-GPU
-    # machine using TitanX's.
-    # For a home GPU computation benchmark, on my home set up with a GTX970 
-    # I was able to run 20 epochs with a training set size of 320 and 
-    # batch size of 2 in about an hour. I started getting reseasonable masks 
-    # after about 3 hours of training. 
-    #
-    print('-' * 30)
-    print('Fitting model...')
-    print('-' * 30)
-    model.fit(imgs_train, imgs_mask_train, batch_size=2, nb_epoch=20, verbose=1, shuffle=True,
-              callbacks=[model_checkpoint])
 
     # loading best weights from training session
     print('-' * 30)
     print('Loading saved weights...')
     print('-' * 30)
-    model.load_weights(working_path + 'unet.hdf5')
+    load_weight_path = working_path + "models/unet.hdf5"
+    model = get_net(load_weight_path)
 
     print('-' * 30)
     print('Predicting masks on test data...')
@@ -147,8 +118,8 @@ def train_and_predict(use_existing):
     for i in range(num_test):
         # mean+=dice_coef_np(imgs_mask_test_true[i,0], imgs_mask_test[i,0])
         # np.save(os.path.join(working_path + "predictions/", 'imgs_mask_test_true_%04d.npy' % (i)), imgs_mask_test_true[i,0])
-        np.save(os.path.join(working_path + "predictions/", 'imgs_mask_test_%04d.npy' % (i)), imgs_mask_test[i,0])
+        np.save(os.path.join(working_path + "predictions/", 'imgs_mask_test_%04d.npy' % (i)), imgs_mask_test[i])
 
 
 if __name__ == '__main__':
-    train_and_predict(False)
+    predict()
