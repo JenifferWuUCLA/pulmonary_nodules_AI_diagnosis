@@ -95,7 +95,7 @@ def predict():
     print('-' * 30)
     print('Loading and preprocessing test data...')
     print('-' * 30)
-    imgs_test = np.load(working_path + "test/testImages.npy").astype(np.float32)
+    imgs_test = np.load(working_path + "testImages.npy").astype(np.float32)
     imgs_mask_test_true = np.load(working_path + "testMasks.npy").astype(np.float32)
 
     # loading best weights from training session
@@ -112,13 +112,17 @@ def predict():
     print("num_test: %d" % num_test)
     imgs_mask_test = np.ndarray([num_test, 1, 512, 512], dtype=np.float32)
     for i in range(num_test):
+        # print(imgs_test[i:i + 1])
         imgs_mask_test[i] = model.predict([imgs_test[i:i + 1]], verbose=0)[0]
-    np.save(os.path.join(working_path + "predictions/", 'masksTestPredicted.npy'), imgs_mask_test)
+        np.save(os.path.join(working_path + "predictions/", 'imgs_mask_test_%04d.npy' % (i)), imgs_mask_test[i])
+    # np.save(os.path.join(working_path + "predictions/", 'masksTestPredicted.npy'), imgs_mask_test)
 
+    '''
     for i in range(num_test):
         # mean+=dice_coef_np(imgs_mask_test_true[i,0], imgs_mask_test[i,0])
         # np.save(os.path.join(working_path + "predictions/", 'imgs_mask_test_true_%04d.npy' % (i)), imgs_mask_test_true[i,0])
         np.save(os.path.join(working_path + "predictions/", 'imgs_mask_test_%04d.npy' % (i)), imgs_mask_test[i])
+    '''
 
 
 if __name__ == '__main__':
