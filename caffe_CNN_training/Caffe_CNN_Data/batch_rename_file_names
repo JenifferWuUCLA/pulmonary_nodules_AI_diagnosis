@@ -27,3 +27,7 @@ mv my_val_subset00/val_subset00/ .
 rename 's/test_/my_test_/' *
 
 mv my_test_subset00/test_subset00/ .
+
+
+
+cat csv/train/annotations.csv csv/val/annotations.csv > csv/train_all/annotations.csv
