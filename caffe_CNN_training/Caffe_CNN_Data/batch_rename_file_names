@@ -33,7 +33,7 @@ mv my_test_subset00/test_subset00/ .
 cat csv/train/annotations.csv csv/val/annotations.csv > csv/train_all/annotations.csv
 
 
-
+# u-net train dataset
 cp train_subset00/* train_subset_all/
 cp train_subset01/* train_subset_all/
 cp train_subset02/* train_subset_all/
@@ -57,7 +57,7 @@ cp val_subset03/* train_subset_all/
 cp val_subset04/* train_subset_all/
 
 
-
+# u-net val dataset
 cp val_subset00/* val_subset_all/
 cp val_subset01/* val_subset_all/
 cp val_subset02/* val_subset_all/
