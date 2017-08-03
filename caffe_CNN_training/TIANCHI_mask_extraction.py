@@ -126,5 +126,5 @@ for fcount, img_file in enumerate(tqdm(file_list)):
                 imgs[i] = img_array[i_z]
             # print output_path + "images_%04d_%04d.npy" % (fcount, node_idx)
             # print output_path + "masks_%04d_%04d.npy" % (fcount, node_idx)
-            np.save(os.path.join(output_path, "images_%04d_%04d.npy" % (fcount, node_idx)), imgs)
-            np.save(os.path.join(output_path, "masks_%04d_%04d.npy" % (fcount, node_idx)), masks)
+            np.save(os.path.join(output_path, "images_%s_%04d_%04d.npy" % (cur_row["seriesuid"], fcount, node_idx)), imgs)
+            np.save(os.path.join(output_path, "masks_%s_%04d_%04d_o.npy" % (cur_row["seriesuid"], fcount, node_idx)), masks)
