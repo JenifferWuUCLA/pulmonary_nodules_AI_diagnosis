@@ -30,7 +30,7 @@ def csv_row(seriesuid, diameter_mm, nodule_class):
     new_row = []
     seriesuid_list = seriesuid.split('/')
     subset, series_uid = seriesuid_list[0], seriesuid_list[1]
-    re_series_uid = series_uid.replace("node_mask", "")
+    re_series_uid = series_uid.replace("nodule_images_LKDS-", "_")
     train_dir, image_file, image_path = "", "", ""
     if nodule_class == 0:
         train_dir = "n01440010/"
