@@ -3,6 +3,8 @@
 
 from __future__ import print_function, division
 import os
+import SimpleITK as sitk
+import numpy as np
 import csv
 from glob import glob
 import pandas as pd
@@ -16,7 +18,7 @@ except:
 ############
 #
 # Getting list of image files
-subset = "train_subset00/"
+subset = "train_subset_all/"
 # subset = "subset0/"
 tianchi_path = "/media/ucla/32CC72BACC727845/tianchi/"
 # tianchi_path = "/home/jenifferwu/LUNA2016/"
@@ -53,7 +55,7 @@ def csv_row(seriesuid, coordX, coordY, coordZ, diameter_mm):
 #
 # The locations of the nodes
 # print(tianchi_csv_path)
-df_node = pd.read_csv(tianchi_path + "csv/train/annotations.csv")
+df_node = pd.read_csv(tianchi_path + "csv/train_all/annotations.csv")
 # df_node = pd.read_csv(tianchi_path + "annotations.csv")
 df_node["file"] = df_node["seriesuid"].map(lambda file_name: get_filename(file_list, file_name))
 # print(df_node["file"])
@@ -81,17 +83,24 @@ for fcount, img_file in enumerate(tqdm(file_list)):
     # print("img_file: %s" % str(img_file))
     # print("seriesuid: %s" % str(seriesuid))
     if mini_df.shape[0] > 0:  # some files may not have a nodule--skipping those
+        # load the data once
+        itk_img = sitk.ReadImage(img_file)
+        origin = np.array(itk_img.GetOrigin())  # x,y,z  Origin in world coordinates (mm)
+        spacing = np.array(itk_img.GetSpacing())  # spacing of voxels in world coor. (mm)
         # go through all nodes (why just the biggest?)
         for node_idx, cur_row in mini_df.iterrows():
             node_x = cur_row["coordX"]
             node_y = cur_row["coordY"]
             node_z = cur_row["coordZ"]
             diam = cur_row["diameter_mm"]
+            # just keep 3 slices
+            center = np.array([node_x, node_y, node_z])  # nodule center
+            v_center = np.rint((center - origin) / spacing)  # nodule center in voxel space (still x,y,z ordering)
             # print("images_%04d_%04d.npy" % (fcount, node_idx))
             # print("masks_%04d_%04d.npy" % (fcount, node_idx))
-            images_name = "images_%04d_%04d.npy" % (fcount, node_idx)
+            images_name = "node_mask_%04d_%04d" % (cur_row["seriesuid"], int(v_center[2]))
             for i in range(3):
-                csv_row(subset + images_name.replace(".npy", "") + "_" + str(i), node_x, node_y, node_z, diam)
+                csv_row("train/" + images_name + "_" + str(i), node_x, node_y, node_z, diam)
 
 # Re-Write out the annotations.txt CSV file.
 csvFileObj = open(os.path.join(output_path, "annotations.csv"), 'w')
