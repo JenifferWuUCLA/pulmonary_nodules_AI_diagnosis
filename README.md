@@ -13,10 +13,8 @@ This code is to deal with Tianchi Dataset, and train lung nodule segmentation ba
 > ### caffe_CNN_training folder
 This code is to deal with Tianchi Dataset, and train the algorithm for image classification (such as CNN) to classify the suspected nodules, the suspected pulmonary nodule isWhether the real probability of pulmonary nodules.
 
-### DSB3Tutorial 
-> ### mask_segment folder
-
-This code is the companion for the tutorial located at https://www.kaggle.com/c/data-science-bowl-2017#tutorial
+### Authors
+Pulmonary_nodules_AI_diagnosis is designed and implemented by Yingyi Wu  <yywu@szucla.org>.
 
 ### About this repository
 
